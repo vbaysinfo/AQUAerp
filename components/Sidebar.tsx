@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { 
   LayoutDashboard, 
@@ -12,9 +13,6 @@ import {
   ChevronDown,
   ChevronRight,
   Factory,
-  FlaskConical,
-  ClipboardList,
-  Layers
 } from 'lucide-react';
 import { NavItem } from '../types';
 
@@ -65,7 +63,10 @@ const navItems: NavItem[] = [
     label: 'Finance', 
     icon: BarChart3,
     subItems: [
-      { id: 'finance-analytics', label: 'Analytics' },
+      { id: 'finance-analytics', label: 'Overview' },
+      { id: 'finance-feed', label: 'Feed Financials' },
+      { id: 'finance-seed', label: 'Seed Financials' },
+      { id: 'finance-medicine', label: 'Medicine Financials' },
       { id: 'finance-reports', label: 'Statements' },
     ]
   },
@@ -125,12 +126,15 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
           const isExpanded = expandedMenus.includes(item.id);
           const hasSubMenu = item.subItems && item.subItems.length > 0;
           const isActive = activeTab === item.id || item.subItems?.some(sub => sub.id === activeTab);
+          
+          // Notification Logic for Farmer 360 Menu
+          const showParentBadge = item.id === 'crm';
 
           return (
             <div key={item.id} className="space-y-1">
               <button
                 onClick={() => hasSubMenu ? toggleMenu(item.id) : setActiveTab(item.id)}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 relative
                   ${isActive && !hasSubMenu
                     ? 'bg-aqua-700 text-white shadow-md' 
                     : 'text-gray-400 hover:bg-aqua-800 hover:text-white'
@@ -140,27 +144,37 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
                   <Icon size={20} className={isActive ? 'text-aqua-500' : ''} />
                   {item.label}
                 </div>
-                {hasSubMenu && (
-                  isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />
-                )}
+                <div className="flex items-center gap-2">
+                    {showParentBadge && !isExpanded && (
+                        <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
+                    )}
+                    {hasSubMenu && (
+                    isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />
+                    )}
+                </div>
               </button>
 
               {hasSubMenu && isExpanded && (
                 <div className="pl-11 space-y-1">
                   {item.subItems?.map((subItem) => {
                      const isSubActive = activeTab === subItem.id;
+                     const showSubBadge = subItem.id === 'crm-tickets';
+
                      return (
                         <button
                             key={subItem.id}
                             onClick={() => setActiveTab(subItem.id)}
-                            className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors
+                            className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors
                                 ${isSubActive 
                                     ? 'bg-aqua-800/50 text-aqua-400 font-medium border-l-2 border-aqua-500 rounded-l-none' 
                                     : 'text-gray-500 hover:text-gray-300 hover:bg-aqua-900/50'
                                 }`
                             }
                         >
-                            {subItem.label}
+                            <span>{subItem.label}</span>
+                            {showSubBadge && (
+                                <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                            )}
                         </button>
                      );
                   })}

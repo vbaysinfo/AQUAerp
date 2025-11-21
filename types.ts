@@ -21,11 +21,27 @@ export interface KPICardProps {
   icon?: React.ReactNode;
 }
 
+export interface OrderItem {
+    productId: string;
+    productName: string;
+    quantity: number;
+    unit: string;
+    unitPrice: number;
+    total: number;
+}
+
 export interface Order {
   id: string;
   customer: string;
-  amount: string;
-  status: 'Pending' | 'Confirmed' | 'In Transit' | 'Delivered' | 'Paid';
+  customerId: string;
+  date: string;
+  amount: string; // Formatted string e.g. "$1,200.00"
+  totalValue: number; // Numeric for calculations
+  status: 'Awaiting Approval' | 'Confirmed' | 'Processing' | 'In Transit' | 'Delivered' | 'Cancelled';
+  paymentStatus: 'Paid' | 'Pending' | 'Partial';
+  source: 'Mobile App' | 'Sales Rep' | 'Web Portal';
+  deliveryAddress: string;
+  items: OrderItem[];
 }
 
 export interface InventoryItem {
@@ -34,6 +50,8 @@ export interface InventoryItem {
   quantity: number;
   status: 'Healthy' | 'Low Stock' | 'Critical';
 }
+
+export type ModuleType = 'feed-plant' | 'inventory' | 'logistics' | 'finance' | 'hr' | 'crm' | 'fleet' | 'orders' | 'reports' | 'all';
 
 export interface Employee {
   id: string;
@@ -47,7 +65,7 @@ export interface Employee {
   joinDate: string;
   mobileAppAccess: boolean;
   lastLogin?: string;
-  permissions: string[]; // e.g., ['feed', 'crm']
+  permissions: ModuleType[];
 }
 
 // --- New Pond Interfaces ---

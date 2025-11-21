@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import EnterpriseDashboard from './pages/EnterpriseDashboard';
@@ -7,16 +8,27 @@ import FinancialAnalytics from './pages/FinancialAnalytics';
 import EmployeeManagement from './pages/EmployeeManagement';
 import Farmer360 from './pages/Farmer360';
 import FeedPlant from './pages/FeedPlant';
-import { Bell, Search, Menu, Sparkles } from 'lucide-react';
+import FleetTracking from './pages/FleetTracking';
+import FinancialStatements from './pages/FinancialStatements';
+import SupportTickets from './pages/SupportTickets';
+import { Bell, Search, Menu, Sparkles, AlertCircle, AlertTriangle, Info, Check } from 'lucide-react';
 import AiModal from './components/AiModal';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('enterprise');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
   // Shared search state (simulated)
   const [searchQuery, setSearchQuery] = useState('');
+
+  const notifications = [
+    { id: 1, title: 'Critical Stock Alert', message: 'Fishmeal stock below 15 tons. Reorder immediately.', time: '2 min ago', type: 'critical' },
+    { id: 2, title: 'New Order Request', message: 'Kamehameha Farms placed a mobile order for $3,240.', time: '15 min ago', type: 'info' },
+    { id: 3, title: 'Quality Control Warning', message: 'Batch #B-2023-090 failed moisture test in QC.', time: '1 hour ago', type: 'warning' },
+    { id: 4, title: 'Vehicle Delayed', message: 'Truck AP 39 CX 9921 reported breakdown near Guntur.', time: '2 hours ago', type: 'warning' },
+  ];
 
   // Determine which page component to render based on activeTab
   const renderContent = () => {
@@ -53,14 +65,20 @@ const App: React.FC = () => {
       case 'logistics':
         return <OrderManagement />;
       case 'fleet':
-        return <div className="flex items-center justify-center h-full text-gray-400">Fleet Tracking Module Coming Soon</div>;
+        return <FleetTracking />;
 
       // Finance
       case 'finance-analytics': 
       case 'finance':
-        return <FinancialAnalytics />;
+        return <FinancialAnalytics category="General" />;
+      case 'finance-feed':
+        return <FinancialAnalytics category="Feed" />;
+      case 'finance-seed':
+        return <FinancialAnalytics category="Seed" />;
+      case 'finance-medicine':
+        return <FinancialAnalytics category="Medicine" />;
       case 'finance-reports':
-         return <div className="flex items-center justify-center h-full text-gray-400">Financial Reports Module Coming Soon</div>;
+         return <FinancialStatements />;
 
       // HR
       case 'hr-employees':
@@ -78,7 +96,7 @@ const App: React.FC = () => {
       case 'crm': 
         return <Farmer360 initialView="list" />;
       case 'crm-tickets':
-         return <div className="flex items-center justify-center h-full text-gray-400">Support Ticket System Coming Soon</div>;
+         return <SupportTickets />;
       
       default: return <EnterpriseDashboard />;
     }
@@ -93,6 +111,7 @@ const App: React.FC = () => {
     if(activeTab.includes('crm')) return 'Farmer Relations';
     if(activeTab.includes('orders')) return 'Orders & Logistics';
     if(activeTab.includes('feed')) return 'Feed Plant Operations';
+    if(activeTab.includes('fleet')) return 'Fleet Tracking';
     return 'Enterprise Dashboard';
   }
 
@@ -147,10 +166,58 @@ const App: React.FC = () => {
               <span>Ask AI</span>
             </button>
             
-            <button className="relative p-2 hover:bg-aqua-700 rounded-full transition-colors">
-              <Bell size={20} className="text-gray-300" />
-              <span className="absolute top-2 right-2 h-2 w-2 bg-red-500 rounded-full border-2 border-aqua-800"></span>
-            </button>
+            {/* Notification Bell with Dropdown */}
+            <div className="relative">
+                <button 
+                  onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+                  className={`relative p-2 rounded-full transition-colors ${isNotificationsOpen ? 'bg-aqua-700 text-white' : 'hover:bg-aqua-700 text-gray-300'}`}
+                >
+                  <Bell size={20} />
+                  <span className="absolute top-2 right-2 h-2 w-2 bg-red-500 rounded-full border-2 border-aqua-800 animate-pulse"></span>
+                </button>
+
+                {isNotificationsOpen && (
+                  <>
+                    {/* Invisible backdrop to handle click-outside */}
+                    <div className="fixed inset-0 z-40" onClick={() => setIsNotificationsOpen(false)}></div>
+                    
+                    {/* Dropdown Panel */}
+                    <div className="absolute right-0 top-full mt-2 w-80 bg-aqua-900 border border-aqua-700 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 ring-1 ring-black/20">
+                        <div className="p-3 border-b border-aqua-800 flex justify-between items-center bg-aqua-950/50">
+                            <h3 className="text-xs font-bold text-white uppercase tracking-wider">Notifications</h3>
+                            <button className="text-[10px] text-aqua-400 hover:text-white flex items-center gap-1 transition-colors">
+                                <Check size={12} /> Mark all read
+                            </button>
+                        </div>
+                        <div className="max-h-[320px] overflow-y-auto custom-scrollbar">
+                            {notifications.map(n => (
+                                <div key={n.id} className="p-3 border-b border-aqua-800/50 hover:bg-aqua-800/50 transition-colors cursor-pointer group">
+                                    <div className="flex gap-3">
+                                        <div className={`mt-0.5 h-8 w-8 rounded-lg flex items-center justify-center shrink-0 border ${
+                                            n.type === 'critical' ? 'bg-red-500/10 border-red-500/30 text-red-500' : 
+                                            n.type === 'warning' ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-500' : 
+                                            'bg-blue-500/10 border-blue-500/30 text-blue-500'
+                                        }`}>
+                                            {n.type === 'critical' ? <AlertCircle size={14} /> : n.type === 'warning' ? <AlertTriangle size={14} /> : <Info size={14} />}
+                                        </div>
+                                        <div>
+                                            <div className="flex justify-between items-start">
+                                                <p className="text-xs font-bold text-white group-hover:text-aqua-400 transition-colors">{n.title}</p>
+                                                <span className="text-[9px] text-gray-500 whitespace-nowrap ml-2">{n.time}</span>
+                                            </div>
+                                            <p className="text-[10px] text-gray-400 mt-0.5 leading-relaxed">{n.message}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="p-2 text-center bg-aqua-950/30 border-t border-aqua-800">
+                            <button className="text-[10px] font-medium text-gray-400 hover:text-white transition-colors">View All Activity</button>
+                        </div>
+                    </div>
+                  </>
+                )}
+            </div>
             
             <div className="h-8 w-8 rounded-full bg-gray-700 bg-cover bg-center border-2 border-aqua-700 cursor-pointer" style={{ backgroundImage: 'url(https://picsum.photos/200)' }}></div>
           </div>
