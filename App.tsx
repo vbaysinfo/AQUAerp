@@ -15,10 +15,14 @@ import IoTConnections from './pages/IoTConnections';
 import TechnicianDashboard from './pages/TechnicianDashboard';
 import SalesDashboard from './pages/SalesDashboard';
 import SettingsPage from './pages/SettingsPage';
+import LoginPage from './pages/LoginPage';
 import { Bell, Search, Menu, Sparkles, AlertCircle, AlertTriangle, Info, Check, Sun, Moon } from 'lucide-react';
 import AiModal from './components/AiModal';
 
 const App: React.FC = () => {
+  // Auth State
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const [activeTab, setActiveTab] = useState('enterprise');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
@@ -37,6 +41,14 @@ const App: React.FC = () => {
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
+  const handleLogin = (username: string, pass: string) => {
+    if (username === 'admin' && pass === 'dippam') {
+        setIsAuthenticated(true);
+    } else {
+        alert('Invalid credentials. Please try again.');
+    }
   };
 
   // Shared search state (simulated)
@@ -135,7 +147,6 @@ const App: React.FC = () => {
 
   // Helper to get readable title for AI context
   const getPageTitle = () => {
-    // Simple mapping or just use activeTab for now
     if(activeTab.includes('inventory')) return 'Inventory Management';
     if(activeTab.includes('finance')) return 'Financial Analytics';
     if(activeTab.includes('hr')) return 'Human Resources';
@@ -156,6 +167,11 @@ const App: React.FC = () => {
         note: `User is currently viewing the ${getPageTitle()} section.`
     };
   };
+
+  // If not authenticated, show Login Page
+  if (!isAuthenticated) {
+    return <LoginPage onLogin={handleLogin} />;
+  }
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-aqua-900 text-gray-900 dark:text-gray-100 font-sans overflow-hidden selection:bg-aqua-500 selection:text-aqua-900 transition-colors duration-300">
