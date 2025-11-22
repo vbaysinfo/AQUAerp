@@ -154,17 +154,17 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
       {/* Header & Filter */}
       <div className="flex flex-col md:flex-row justify-between items-end gap-4">
           <div>
-              <h2 className="text-2xl font-bold text-white">{category} Inventory Intelligence</h2>
-              <p className="text-aqua-400 text-xs">Real-time tracking for {category.toLowerCase()} stock across regions.</p>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{category} Inventory Intelligence</h2>
+              <p className="text-gray-500 dark:text-aqua-400 text-xs">Real-time tracking for {category.toLowerCase()} stock across regions.</p>
           </div>
           
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-3 bg-aqua-800/30 p-1.5 rounded-lg border border-aqua-800">
-                <span className="text-xs text-gray-400 ml-2">Region:</span>
+            <div className="flex items-center gap-3 bg-white dark:bg-aqua-800/30 p-1.5 rounded-lg border border-gray-200 dark:border-aqua-800">
+                <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">Region:</span>
                 <select 
                     value={selectedRegion}
                     onChange={(e) => setSelectedRegion(e.target.value)}
-                    className="bg-aqua-900 border border-aqua-700 text-white text-xs rounded-md px-2 py-1 focus:ring-aqua-500 appearance-none cursor-pointer"
+                    className="bg-transparent dark:bg-aqua-900 border-none dark:border border-aqua-700 text-gray-900 dark:text-white text-xs rounded-md px-2 py-1 focus:ring-aqua-500 appearance-none cursor-pointer font-medium"
                 >
                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                     <option value="Telangana">Telangana</option>
@@ -174,7 +174,7 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
             </div>
             <button 
                 onClick={() => setIsReceiveOpen(true)}
-                className="bg-aqua-500 hover:bg-aqua-400 text-aqua-950 font-bold px-4 py-2 rounded-lg transition-colors flex items-center gap-2 text-sm shadow-lg shadow-aqua-500/20"
+                className="bg-aqua-500 hover:bg-aqua-400 text-white dark:text-aqua-950 font-bold px-4 py-2 rounded-lg transition-colors flex items-center gap-2 text-sm shadow-lg shadow-aqua-500/20"
             >
                 <Plus size={16} /> Receive Stock
             </button>
@@ -183,37 +183,37 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
 
       {/* Top Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-aqua-800/50 border border-aqua-700 p-4 rounded-xl relative overflow-hidden group">
+        <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 p-4 rounded-xl relative overflow-hidden group shadow-sm">
             <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Building2 size={48} />
+                <Building2 size={48} className="text-gray-900 dark:text-white" />
             </div>
-            <p className="text-gray-400 text-xs">Total {category} Stock</p>
-            <p className="text-2xl font-bold text-white mt-1">{totalStock.toLocaleString()} <span className="text-sm text-gray-500 font-normal">Tons</span></p>
+            <p className="text-gray-500 dark:text-gray-400 text-xs">Total {category} Stock</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">{totalStock.toLocaleString()} <span className="text-sm text-gray-500 font-normal">Tons</span></p>
             <p className="text-green-500 text-[10px] mt-1 flex items-center gap-1"><ArrowUpRight size={10}/> +2.5% vs last month</p>
         </div>
-        <div className="bg-aqua-800/50 border border-aqua-700 p-4 rounded-xl">
-            <p className="text-gray-400 text-xs">Warehouses in {selectedRegion}</p>
-            <p className="text-2xl font-bold text-white mt-1">{locations.length}</p>
-            <p className="text-aqua-400 text-[10px] mt-1 flex items-center gap-1"><Navigation size={10}/> Across 5 districts</p>
+        <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 p-4 rounded-xl shadow-sm">
+            <p className="text-gray-500 dark:text-gray-400 text-xs">Warehouses in {selectedRegion}</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">{locations.length}</p>
+            <p className="text-aqua-600 dark:text-aqua-400 text-[10px] mt-1 flex items-center gap-1"><Navigation size={10}/> Across 5 districts</p>
         </div>
-         <div className="bg-aqua-800/50 border border-aqua-700 p-4 rounded-xl">
-            <p className="text-gray-400 text-xs">Capacity Utilization</p>
-            <p className="text-2xl font-bold text-white mt-1">68%</p>
-            <div className="w-full bg-aqua-900 h-1 rounded-full mt-2">
+         <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 p-4 rounded-xl shadow-sm">
+            <p className="text-gray-500 dark:text-gray-400 text-xs">Capacity Utilization</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">68%</p>
+            <div className="w-full bg-gray-200 dark:bg-aqua-900 h-1 rounded-full mt-2">
                 <div className="bg-yellow-500 h-1 rounded-full" style={{ width: '68%' }}></div>
             </div>
         </div>
-         <div className="bg-aqua-800/50 border border-aqua-700 p-4 rounded-xl">
-            <p className="text-gray-400 text-xs">Critical Low Stock</p>
-            <p className="text-2xl font-bold text-white mt-1">1 <span className="text-sm font-normal text-gray-500">Location</span></p>
+         <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 p-4 rounded-xl shadow-sm">
+            <p className="text-gray-500 dark:text-gray-400 text-xs">Critical Low Stock</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">1 <span className="text-sm font-normal text-gray-500">Location</span></p>
             <p className="text-red-500 text-[10px] mt-1 font-bold">Vizag Hub needs refill</p>
         </div>
       </div>
 
       {/* Regional Breakdown (Andhra Pradesh) */}
-      <div className="bg-aqua-800/40 border border-aqua-700 rounded-xl p-4">
-          <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-              <MapPin className="text-aqua-400" size={18}/> 
+      <div className="bg-white dark:bg-aqua-800/40 border border-gray-200 dark:border-aqua-700 rounded-xl p-4 shadow-sm">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <MapPin className="text-aqua-600 dark:text-aqua-400" size={18}/> 
               Regional Stock Distribution: {selectedRegion}
           </h3>
           
@@ -225,21 +225,21 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
                   if(loc.status === 'Critical') statusColor = 'bg-red-500';
 
                   return (
-                      <div key={loc.id} className="bg-aqua-900/80 border border-aqua-700 p-3 rounded-lg hover:border-aqua-500 transition-all group">
+                      <div key={loc.id} className="bg-gray-50 dark:bg-aqua-900/80 border border-gray-200 dark:border-aqua-700 p-3 rounded-lg hover:border-aqua-500 transition-all group">
                           <div className="flex justify-between items-start mb-1.5">
                               <div>
-                                  <h4 className="font-bold text-white text-sm">{loc.city}</h4>
-                                  <p className="text-[10px] text-gray-400">{loc.type}</p>
+                                  <h4 className="font-bold text-gray-900 dark:text-white text-sm">{loc.city}</h4>
+                                  <p className="text-[10px] text-gray-500 dark:text-gray-400">{loc.type}</p>
                               </div>
-                              <span className={`h-2 w-2 rounded-full ${statusColor} ring-1 ring-aqua-900`}></span>
+                              <span className={`h-2 w-2 rounded-full ${statusColor} ring-1 ring-white dark:ring-aqua-900`}></span>
                           </div>
                           
                           <div className="mt-2 space-y-1">
                               <div className="flex justify-between text-[10px]">
-                                  <span className="text-gray-400">Stock</span>
-                                  <span className="text-white font-bold">{loc.stock} {loc.unit}</span>
+                                  <span className="text-gray-500 dark:text-gray-400">Stock</span>
+                                  <span className="text-gray-900 dark:text-white font-bold">{loc.stock} {loc.unit}</span>
                               </div>
-                              <div className="w-full bg-aqua-950 h-1.5 rounded-full overflow-hidden">
+                              <div className="w-full bg-gray-200 dark:bg-aqua-950 h-1.5 rounded-full overflow-hidden">
                                   <div 
                                     className={`h-full rounded-full transition-all duration-500 ${statusColor}`} 
                                     style={{ width: `${utilization}%` }}
@@ -251,11 +251,11 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
                               </div>
                           </div>
 
-                          <div className="mt-3 pt-2 border-t border-aqua-800/50">
+                          <div className="mt-3 pt-2 border-t border-gray-200 dark:border-aqua-800/50">
                               <p className="text-[10px] text-gray-400 uppercase font-bold mb-1">Top Items</p>
                               <div className="space-y-0.5">
                                   {loc.items.slice(0, 3).map((item, idx) => (
-                                      <div key={idx} className="flex justify-between text-[10px] text-gray-300">
+                                      <div key={idx} className="flex justify-between text-[10px] text-gray-600 dark:text-gray-300">
                                           <span>{item.name}</span>
                                           <span>{item.qty}</span>
                                       </div>
@@ -271,14 +271,14 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Left Col: Detailed Table */}
         <div className="lg:col-span-2 space-y-4">
-            <div className="bg-aqua-800/50 border border-aqua-700 rounded-xl overflow-hidden">
-                <div className="p-4 border-b border-aqua-700 flex justify-between items-center">
-                    <h3 className="text-sm font-bold text-white">Location-wise Inventory Details</h3>
-                    <button className="text-[10px] bg-aqua-900 text-aqua-400 px-2 py-1 rounded border border-aqua-700 hover:text-white">Export CSV</button>
+            <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 rounded-xl overflow-hidden shadow-sm">
+                <div className="p-4 border-b border-gray-200 dark:border-aqua-700 flex justify-between items-center">
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white">Location-wise Inventory Details</h3>
+                    <button className="text-[10px] bg-gray-100 dark:bg-aqua-900 text-aqua-600 dark:text-aqua-400 px-2 py-1 rounded border border-gray-200 dark:border-aqua-700 hover:bg-gray-200 dark:hover:text-white transition-colors">Export CSV</button>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-xs text-left">
-                        <thead className="bg-aqua-900/50 text-gray-400 uppercase text-[10px]">
+                        <thead className="bg-gray-50 dark:bg-aqua-900/50 text-gray-500 dark:text-gray-400 uppercase text-[10px]">
                             <tr>
                                 <th className="px-4 py-3">Location</th>
                                 <th className="px-4 py-3">Item Name</th>
@@ -288,17 +288,17 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
                                 <th className="px-4 py-3">Status</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-aqua-700 text-gray-300">
+                        <tbody className="divide-y divide-gray-200 dark:divide-aqua-700 text-gray-700 dark:text-gray-300">
                             {locations.flatMap(loc => 
                                 loc.items.map((item, idx) => (
-                                    <tr key={`${loc.id}-${idx}`} className="hover:bg-aqua-900/20 transition-colors">
-                                        <td className="px-4 py-2.5 font-bold text-aqua-400">{idx === 0 ? loc.city : ''}</td>
+                                    <tr key={`${loc.id}-${idx}`} className="hover:bg-gray-50 dark:hover:bg-aqua-900/20 transition-colors">
+                                        <td className="px-4 py-2.5 font-bold text-aqua-600 dark:text-aqua-400">{idx === 0 ? loc.city : ''}</td>
                                         <td className="px-4 py-2.5">{item.name}</td>
-                                        <td className="px-4 py-2.5">{item.sku}</td>
-                                        <td className="px-4 py-2.5 font-bold text-white">{item.qty} {loc.unit === 'kL' && item.sku.includes('LIQ') ? 'kL' : 'Tons'}</td>
-                                        <td className="px-4 py-2.5 text-gray-500">-</td>
+                                        <td className="px-4 py-2.5 text-gray-500">{item.sku}</td>
+                                        <td className="px-4 py-2.5 font-bold text-gray-900 dark:text-white">{item.qty} {loc.unit === 'kL' && item.sku.includes('LIQ') ? 'kL' : 'Tons'}</td>
+                                        <td className="px-4 py-2.5 text-gray-400">-</td>
                                         <td className="px-4 py-2.5">
-                                            <span className={`px-2 py-0.5 rounded-full text-[10px] ${loc.status === 'Healthy' ? 'bg-green-500/20 text-green-400' : loc.status === 'Low Stock' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-red-500/20 text-red-400'}`}>
+                                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${loc.status === 'Healthy' ? 'bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400' : loc.status === 'Low Stock' ? 'bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400' : 'bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-400'}`}>
                                                 {loc.status}
                                             </span>
                                         </td>
@@ -310,15 +310,15 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
                 </div>
             </div>
 
-            <div className="bg-aqua-800/50 border border-aqua-700 rounded-xl p-4">
-                <h3 className="text-sm font-bold text-white mb-4">Demand Forecasting vs Stock (Regional)</h3>
+            <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 rounded-xl p-4 shadow-sm">
+                <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Demand Forecasting vs Stock (Regional)</h3>
                 <div className="h-64 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <ComposedChart data={forecastData}>
-                            <CartesianGrid stroke="#234248" strokeDasharray="3 3" />
-                            <XAxis dataKey="name" stroke="#92c0c9" fontSize={10} />
-                            <YAxis stroke="#92c0c9" fontSize={10} />
-                            <Tooltip contentStyle={{ backgroundColor: '#152a2e', borderColor: '#234248', fontSize: '12px' }} />
+                            <CartesianGrid stroke="#374151" strokeDasharray="3 3" strokeOpacity={0.2} />
+                            <XAxis dataKey="name" stroke="#9ca3af" fontSize={10} />
+                            <YAxis stroke="#9ca3af" fontSize={10} />
+                            <Tooltip contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', fontSize: '12px', color: '#fff' }} />
                             <Legend wrapperStyle={{fontSize: '12px'}}/>
                             <Bar dataKey="stock" name="Available Stock" barSize={16} fill="#13c8ec" />
                             <Line type="monotone" dataKey="demand" name="Projected Demand" stroke="#f59e0b" strokeWidth={2} />
@@ -330,44 +330,44 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
 
         {/* Right Col: Map & Suppliers */}
         <div className="space-y-4">
-             <div className="bg-aqua-800/50 border border-aqua-700 rounded-xl p-4">
-                <h3 className="text-sm font-bold text-white mb-3">Top Suppliers ({category})</h3>
+             <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 rounded-xl p-4 shadow-sm">
+                <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-3">Top Suppliers ({category})</h3>
                 <ul className="space-y-3">
                     <li className="flex justify-between items-center">
                         <div>
-                            <p className="text-white font-medium text-xs">Bhimavaram Feeds Ltd.</p>
-                            <p className="text-[10px] text-gray-400">On-time: 99%</p>
+                            <p className="text-gray-900 dark:text-white font-medium text-xs">Bhimavaram Feeds Ltd.</p>
+                            <p className="text-[10px] text-gray-500 dark:text-gray-400">On-time: 99%</p>
                         </div>
                         <div className="text-right">
-                            <p className="text-green-400 font-medium text-xs">Preferred</p>
-                            <p className="text-[10px] text-gray-400">Vol: 500T/mo</p>
+                            <p className="text-green-600 dark:text-green-400 font-medium text-xs">Preferred</p>
+                            <p className="text-[10px] text-gray-500 dark:text-gray-400">Vol: 500T/mo</p>
                         </div>
                     </li>
                     <li className="flex justify-between items-center">
                         <div>
-                            <p className="text-white font-medium text-xs">Nellore Biotech</p>
-                            <p className="text-[10px] text-gray-400">On-time: 92%</p>
+                            <p className="text-gray-900 dark:text-white font-medium text-xs">Nellore Biotech</p>
+                            <p className="text-[10px] text-gray-500 dark:text-gray-400">On-time: 92%</p>
                         </div>
                         <div className="text-right">
-                            <p className="text-yellow-400 font-medium text-xs">Good</p>
-                            <p className="text-[10px] text-gray-400">Vol: 120T/mo</p>
+                            <p className="text-yellow-600 dark:text-yellow-400 font-medium text-xs">Good</p>
+                            <p className="text-[10px] text-gray-500 dark:text-gray-400">Vol: 120T/mo</p>
                         </div>
                     </li>
                     <li className="flex justify-between items-center">
                         <div>
-                            <p className="text-white font-medium text-xs">Costal Logistics Inc</p>
-                            <p className="text-[10px] text-gray-400">On-time: 85%</p>
+                            <p className="text-gray-900 dark:text-white font-medium text-xs">Costal Logistics Inc</p>
+                            <p className="text-[10px] text-gray-500 dark:text-gray-400">On-time: 85%</p>
                         </div>
                         <div className="text-right">
-                            <p className="text-orange-400 font-medium text-xs">Review</p>
-                            <p className="text-[10px] text-gray-400">Vol: 50T/mo</p>
+                            <p className="text-orange-600 dark:text-orange-400 font-medium text-xs">Review</p>
+                            <p className="text-[10px] text-gray-500 dark:text-gray-400">Vol: 50T/mo</p>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <div className="bg-aqua-800/50 border border-aqua-700 rounded-xl p-4">
-                <h3 className="text-sm font-bold text-white mb-3">Stock Valuation</h3>
+            <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 rounded-xl p-4 shadow-sm">
+                <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-3">Stock Valuation</h3>
                 <div className="h-40 w-full flex justify-center">
                      <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
@@ -383,7 +383,7 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="none"/>
                                 ))}
                             </Pie>
-                            <Tooltip contentStyle={{ backgroundColor: '#152a2e', borderColor: '#234248', fontSize: '12px' }} itemStyle={{color: '#fff'}} />
+                            <Tooltip contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', fontSize: '12px', color: '#fff' }} />
                             <Legend verticalAlign="bottom" height={36} iconSize={8} wrapperStyle={{fontSize: '10px'}}/>
                         </PieChart>
                    </ResponsiveContainer>
@@ -398,17 +398,17 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
             className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${isReceiveOpen ? 'opacity-100' : 'opacity-0'}`}
             onClick={() => setIsReceiveOpen(false)}
         />
-        <div className={`absolute right-0 top-0 h-full w-full md:w-[500px] bg-aqua-900 border-l border-aqua-700 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${isReceiveOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`absolute right-0 top-0 h-full w-full md:w-[500px] bg-white dark:bg-aqua-900 border-l border-gray-200 dark:border-aqua-700 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${isReceiveOpen ? 'translate-x-0' : 'translate-x-full'}`}>
             
             {/* Header */}
-            <div className="p-5 border-b border-aqua-700 bg-aqua-800 flex justify-between items-center">
+            <div className="p-5 border-b border-gray-200 dark:border-aqua-700 bg-gray-50 dark:bg-aqua-800 flex justify-between items-center">
                 <div>
-                    <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                        <Package size={20} className="text-aqua-400"/> Receive Stock (GRN)
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                        <Package size={20} className="text-aqua-600 dark:text-aqua-400"/> Receive Stock (GRN)
                     </h2>
-                    <p className="text-xs text-gray-400">Log incoming inventory from suppliers.</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Log incoming inventory from suppliers.</p>
                 </div>
-                <button onClick={() => setIsReceiveOpen(false)} className="p-1.5 hover:bg-aqua-700 rounded-full text-gray-400 hover:text-white transition-colors">
+                <button onClick={() => setIsReceiveOpen(false)} className="p-1.5 hover:bg-gray-200 dark:hover:bg-aqua-700 rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                     <X size={20} />
                 </button>
             </div>
@@ -418,14 +418,14 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
                 
                 {/* Section 1: Source Info */}
                 <section className="space-y-3">
-                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-aqua-800 pb-1 flex items-center gap-2">
+                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200 dark:border-aqua-800 pb-1 flex items-center gap-2">
                         <Truck size={12} /> Supplier & Logistics
                     </h3>
                     <div className="space-y-4">
                         <div>
-                            <label className="block text-xs text-aqua-100 mb-1.5 font-medium">Supplier <span className="text-red-400">*</span></label>
+                            <label className="block text-xs text-gray-700 dark:text-aqua-100 mb-1.5 font-medium">Supplier <span className="text-red-400">*</span></label>
                             <select 
-                                className="w-full bg-aqua-800 border border-aqua-700 rounded-lg p-2.5 text-sm text-white focus:border-aqua-500 focus:outline-none appearance-none"
+                                className="w-full bg-white dark:bg-aqua-800 border border-gray-300 dark:border-aqua-700 rounded-lg p-2.5 text-sm text-gray-900 dark:text-white focus:border-aqua-500 focus:outline-none appearance-none"
                                 value={grnForm.supplierId}
                                 onChange={(e) => setGrnForm({...grnForm, supplierId: e.target.value})}
                             >
@@ -436,21 +436,21 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
                         
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-xs text-aqua-100 mb-1.5 font-medium">Date Received</label>
+                                <label className="block text-xs text-gray-700 dark:text-aqua-100 mb-1.5 font-medium">Date Received</label>
                                 <input 
                                     type="date" 
-                                    className="w-full bg-aqua-800 border border-aqua-700 rounded-lg p-2.5 text-sm text-white focus:border-aqua-500 focus:outline-none"
+                                    className="w-full bg-white dark:bg-aqua-800 border border-gray-300 dark:border-aqua-700 rounded-lg p-2.5 text-sm text-gray-900 dark:text-white focus:border-aqua-500 focus:outline-none"
                                     value={grnForm.date}
                                     onChange={(e) => setGrnForm({...grnForm, date: e.target.value})}
                                 />
                             </div>
                             <div>
-                                <label className="block text-xs text-aqua-100 mb-1.5 font-medium">Invoice / GRN Ref</label>
+                                <label className="block text-xs text-gray-700 dark:text-aqua-100 mb-1.5 font-medium">Invoice / GRN Ref</label>
                                 <div className="relative">
                                     <FileText className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14} />
                                     <input 
                                         type="text" 
-                                        className="w-full bg-aqua-800 border border-aqua-700 rounded-lg pl-9 pr-3 py-2.5 text-sm text-white focus:border-aqua-500 focus:outline-none"
+                                        className="w-full bg-white dark:bg-aqua-800 border border-gray-300 dark:border-aqua-700 rounded-lg pl-9 pr-3 py-2.5 text-sm text-gray-900 dark:text-white focus:border-aqua-500 focus:outline-none"
                                         placeholder="#GRN-..."
                                         value={grnForm.invoiceNo}
                                         onChange={(e) => setGrnForm({...grnForm, invoiceNo: e.target.value})}
@@ -463,14 +463,14 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
 
                 {/* Section 2: Stock Details */}
                 <section className="space-y-3">
-                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-aqua-800 pb-1 flex items-center gap-2">
+                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200 dark:border-aqua-800 pb-1 flex items-center gap-2">
                         <Building2 size={12} /> Inventory Assignment
                     </h3>
                     <div className="space-y-4">
                         <div>
-                            <label className="block text-xs text-aqua-100 mb-1.5 font-medium">Receiving Warehouse <span className="text-red-400">*</span></label>
+                            <label className="block text-xs text-gray-700 dark:text-aqua-100 mb-1.5 font-medium">Receiving Warehouse <span className="text-red-400">*</span></label>
                             <select 
-                                className="w-full bg-aqua-800 border border-aqua-700 rounded-lg p-2.5 text-sm text-white focus:border-aqua-500 focus:outline-none appearance-none"
+                                className="w-full bg-white dark:bg-aqua-800 border border-gray-300 dark:border-aqua-700 rounded-lg p-2.5 text-sm text-gray-900 dark:text-white focus:border-aqua-500 focus:outline-none appearance-none"
                                 value={grnForm.locationId}
                                 onChange={(e) => setGrnForm({...grnForm, locationId: e.target.value})}
                             >
@@ -480,9 +480,9 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
                         </div>
 
                         <div>
-                            <label className="block text-xs text-aqua-100 mb-1.5 font-medium">Product <span className="text-red-400">*</span></label>
+                            <label className="block text-xs text-gray-700 dark:text-aqua-100 mb-1.5 font-medium">Product <span className="text-red-400">*</span></label>
                             <select 
-                                className="w-full bg-aqua-800 border border-aqua-700 rounded-lg p-2.5 text-sm text-white focus:border-aqua-500 focus:outline-none appearance-none"
+                                className="w-full bg-white dark:bg-aqua-800 border border-gray-300 dark:border-aqua-700 rounded-lg p-2.5 text-sm text-gray-900 dark:text-white focus:border-aqua-500 focus:outline-none appearance-none"
                                 value={grnForm.productSku}
                                 onChange={(e) => setGrnForm({...grnForm, productSku: e.target.value})}
                             >
@@ -492,16 +492,16 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
                         </div>
 
                         <div>
-                            <label className="block text-xs text-aqua-100 mb-1.5 font-medium">Quantity Received <span className="text-red-400">*</span></label>
+                            <label className="block text-xs text-gray-700 dark:text-aqua-100 mb-1.5 font-medium">Quantity Received <span className="text-red-400">*</span></label>
                             <div className="relative">
                                 <input 
                                     type="number" 
-                                    className="w-full bg-aqua-800 border border-aqua-700 rounded-lg p-2.5 pr-16 text-sm text-white focus:border-aqua-500 focus:outline-none font-bold"
+                                    className="w-full bg-white dark:bg-aqua-800 border border-gray-300 dark:border-aqua-700 rounded-lg p-2.5 pr-16 text-sm text-gray-900 dark:text-white focus:border-aqua-500 focus:outline-none font-bold"
                                     placeholder="0.00"
                                     value={grnForm.quantity || ''}
                                     onChange={(e) => setGrnForm({...grnForm, quantity: parseFloat(e.target.value)})}
                                 />
-                                <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-medium">
+                                <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-medium">
                                     {grnForm.productSku ? products.find(p => p.sku === grnForm.productSku)?.unit : 'Units'}
                                 </div>
                             </div>
@@ -511,13 +511,13 @@ const InventoryIntelligence: React.FC<InventoryProps> = ({ category = 'Feed' }) 
             </div>
 
             {/* Footer */}
-            <div className="p-4 border-t border-aqua-700 bg-aqua-800 flex gap-3">
-                <button onClick={() => setIsReceiveOpen(false)} className="flex-1 py-2.5 rounded-xl font-bold text-gray-400 hover:text-white hover:bg-aqua-700 transition-colors text-sm">
+            <div className="p-4 border-t border-gray-200 dark:border-aqua-700 bg-gray-50 dark:bg-aqua-800 flex gap-3">
+                <button onClick={() => setIsReceiveOpen(false)} className="flex-1 py-2.5 rounded-xl font-bold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-aqua-700 transition-colors text-sm">
                     Cancel
                 </button>
                 <button 
                     onClick={handleReceiveStock}
-                    className="flex-1 bg-aqua-500 hover:bg-aqua-400 text-aqua-950 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-aqua-500/20 transition-all text-sm"
+                    className="flex-1 bg-aqua-500 hover:bg-aqua-400 text-white dark:text-aqua-950 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-aqua-500/20 transition-all text-sm"
                 >
                     <Save size={18} /> Update Inventory
                 </button>

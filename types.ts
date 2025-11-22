@@ -106,6 +106,15 @@ export interface HealthLog {
   reason: string;
 }
 
+export interface IotDevice {
+  deviceId: string;
+  type: 'Smart Buoy' | 'Auto-Feeder' | 'Aerator Controller' | 'Water Station';
+  status: 'Online' | 'Offline' | 'Maintenance';
+  lastSync: string;
+  firmware: string;
+  signalStrength: 'Excellent' | 'Good' | 'Weak';
+}
+
 export interface Pond {
   id: string;
   name: string;
@@ -115,6 +124,7 @@ export interface Pond {
   stocking: StockingData;
   feed: FeedData;
   health: HealthLog[];
+  iotDevice?: IotDevice; // Optional connected device
 }
 
 export interface Farmer {

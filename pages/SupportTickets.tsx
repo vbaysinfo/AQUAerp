@@ -152,25 +152,25 @@ const SupportTickets: React.FC = () => {
             {/* Header Stats */}
             <div className="flex flex-col md:flex-row justify-between items-end gap-4 shrink-0">
                 <div>
-                    <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                         Support Tickets
                         <span className="flex h-3 w-3 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.6)]"></span>
                     </h2>
-                    <p className="text-aqua-400 text-xs mt-1">Farmer inquiries and emergency alerts.</p>
+                    <p className="text-gray-500 dark:text-aqua-400 text-xs mt-1">Farmer inquiries and emergency alerts.</p>
                 </div>
                 <div className="flex gap-3">
-                    <div className="bg-aqua-800/50 border border-aqua-700 px-4 py-2 rounded-xl flex items-center gap-3">
-                        <div className="p-1.5 bg-red-500/20 text-red-400 rounded-lg"><AlertCircle size={18}/></div>
+                    <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 px-4 py-2 rounded-xl flex items-center gap-3 shadow-sm">
+                        <div className="p-1.5 bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400 rounded-lg"><AlertCircle size={18}/></div>
                         <div>
-                            <p className="text-[10px] text-gray-400 uppercase font-bold">Open Tickets</p>
-                            <p className="text-lg font-bold text-white">{activeCount}</p>
+                            <p className="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold">Open Tickets</p>
+                            <p className="text-lg font-bold text-gray-900 dark:text-white">{activeCount}</p>
                         </div>
                     </div>
-                    <div className="bg-aqua-800/50 border border-aqua-700 px-4 py-2 rounded-xl flex items-center gap-3">
-                        <div className="p-1.5 bg-orange-500/20 text-orange-400 rounded-lg"><AlertTriangle size={18}/></div>
+                    <div className="bg-white dark:bg-aqua-800/50 border border-gray-200 dark:border-aqua-700 px-4 py-2 rounded-xl flex items-center gap-3 shadow-sm">
+                        <div className="p-1.5 bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded-lg"><AlertTriangle size={18}/></div>
                         <div>
-                            <p className="text-[10px] text-gray-400 uppercase font-bold">High Priority</p>
-                            <p className="text-lg font-bold text-white">{urgentCount}</p>
+                            <p className="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold">High Priority</p>
+                            <p className="text-lg font-bold text-gray-900 dark:text-white">{urgentCount}</p>
                         </div>
                     </div>
                 </div>
@@ -180,15 +180,15 @@ const SupportTickets: React.FC = () => {
             <div className="flex-1 flex flex-col lg:flex-row gap-4 min-h-0 overflow-hidden">
                 
                 {/* Left: Ticket List */}
-                <div className="w-full lg:w-1/3 bg-aqua-900/30 border border-aqua-800 rounded-2xl flex flex-col overflow-hidden">
+                <div className="w-full lg:w-1/3 bg-white dark:bg-aqua-900/30 border border-gray-200 dark:border-aqua-800 rounded-2xl flex flex-col overflow-hidden shadow-sm">
                     {/* Search & Filters */}
-                    <div className="p-3 border-b border-aqua-800 space-y-3 bg-aqua-900/50">
+                    <div className="p-3 border-b border-gray-200 dark:border-aqua-800 space-y-3 bg-gray-50 dark:bg-aqua-900/50">
                         <div className="relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14}/>
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={14}/>
                             <input 
                                 type="text" 
                                 placeholder="Search tickets..." 
-                                className="w-full bg-aqua-800 border border-aqua-700 rounded-lg pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-aqua-500"
+                                className="w-full bg-white dark:bg-aqua-800 border border-gray-200 dark:border-aqua-700 rounded-lg pl-9 pr-3 py-2 text-xs text-gray-900 dark:text-white focus:outline-none focus:border-aqua-500"
                             />
                         </div>
                         <div className="flex gap-2">
@@ -198,8 +198,8 @@ const SupportTickets: React.FC = () => {
                                     onClick={() => setFilterStatus(status)}
                                     className={`flex-1 py-1.5 text-[10px] font-bold rounded-lg border transition-all ${
                                         filterStatus === status 
-                                        ? 'bg-aqua-700 text-white border-aqua-600' 
-                                        : 'bg-aqua-900/50 text-gray-400 border-aqua-800 hover:bg-aqua-800'
+                                        ? 'bg-aqua-500 text-white border-aqua-600 dark:bg-aqua-700 dark:border-aqua-600' 
+                                        : 'bg-white dark:bg-aqua-900/50 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-aqua-800 hover:bg-gray-50 dark:hover:bg-aqua-800'
                                     }`}
                                 >
                                     {status}
@@ -216,36 +216,36 @@ const SupportTickets: React.FC = () => {
                                 onClick={() => { setSelectedTicketId(ticket.id); }}
                                 className={`p-3 rounded-xl cursor-pointer transition-all border relative group
                                     ${selectedTicketId === ticket.id 
-                                        ? 'bg-aqua-800 border-aqua-500 shadow-md' 
-                                        : 'bg-aqua-800/20 border-aqua-800/50 hover:bg-aqua-800/50 hover:border-aqua-700'}`}
+                                        ? 'bg-aqua-50 dark:bg-aqua-800 border-aqua-500 shadow-md ring-1 ring-aqua-500 dark:ring-0' 
+                                        : 'bg-white dark:bg-aqua-800/20 border-gray-100 dark:border-aqua-800/50 hover:bg-gray-50 dark:hover:bg-aqua-800/50 hover:border-aqua-300 dark:hover:border-aqua-700'}`}
                             >
                                 {/* Red Dot Indicator for Unread */}
                                 {ticket.unread && (
-                                    <div className="absolute top-3 right-3 h-2.5 w-2.5 bg-red-500 rounded-full border-2 border-aqua-900 shadow-sm animate-pulse"></div>
+                                    <div className="absolute top-3 right-3 h-2.5 w-2.5 bg-red-500 rounded-full border-2 border-white dark:border-aqua-900 shadow-sm animate-pulse"></div>
                                 )}
 
                                 <div className="flex justify-between items-start mb-1.5">
                                     <div className="flex items-center gap-2">
-                                        <span className="text-[10px] font-bold text-aqua-400 bg-aqua-900/50 px-1.5 py-0.5 rounded">{ticket.id}</span>
+                                        <span className="text-[10px] font-bold text-aqua-600 dark:text-aqua-400 bg-aqua-50 dark:bg-aqua-900/50 px-1.5 py-0.5 rounded">{ticket.id}</span>
                                         {ticket.priority === 'High' && (
-                                            <span className="text-[10px] font-bold text-red-400 bg-red-900/20 px-1.5 py-0.5 rounded flex items-center gap-1">
+                                            <span className="text-[10px] font-bold text-red-500 dark:text-red-400 bg-red-100 dark:bg-red-900/20 px-1.5 py-0.5 rounded flex items-center gap-1">
                                                 <AlertTriangle size={10}/> High
                                             </span>
                                         )}
                                     </div>
-                                    <span className="text-[10px] text-gray-500">{ticket.timestamp}</span>
+                                    <span className="text-[10px] text-gray-400 dark:text-gray-500">{ticket.timestamp}</span>
                                 </div>
                                 
-                                <h4 className={`text-xs font-bold mb-1 truncate pr-4 ${ticket.unread ? 'text-white' : 'text-gray-300'}`}>{ticket.subject}</h4>
-                                <p className="text-[10px] text-gray-400 line-clamp-2 mb-2">{ticket.lastMessage}</p>
+                                <h4 className={`text-xs font-bold mb-1 truncate pr-4 ${ticket.unread ? 'text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-300'}`}>{ticket.subject}</h4>
+                                <p className="text-[10px] text-gray-500 dark:text-gray-400 line-clamp-2 mb-2">{ticket.lastMessage}</p>
                                 
-                                <div className="flex items-center gap-2 mt-2 pt-2 border-t border-aqua-700/30">
+                                <div className="flex items-center gap-2 mt-2 pt-2 border-t border-gray-100 dark:border-aqua-700/30">
                                     <img src={ticket.avatar} alt="" className="h-5 w-5 rounded-full" />
-                                    <span className="text-[10px] text-gray-300 font-medium">{ticket.farmer}</span>
+                                    <span className="text-[10px] text-gray-700 dark:text-gray-300 font-medium">{ticket.farmer}</span>
                                     <span className={`ml-auto text-[10px] px-2 py-0.5 rounded-full border ${
-                                        ticket.status === 'Open' ? 'bg-green-500/10 text-green-400 border-green-500/20' :
-                                        ticket.status === 'Resolved' ? 'bg-gray-500/10 text-gray-400 border-gray-500/20' :
-                                        'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                                        ticket.status === 'Open' ? 'bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 border-green-200 dark:border-green-500/20' :
+                                        ticket.status === 'Resolved' ? 'bg-gray-100 dark:bg-gray-500/10 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-500/20' :
+                                        'bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-500/20'
                                     }`}>
                                         {ticket.status}
                                     </span>
@@ -256,27 +256,27 @@ const SupportTickets: React.FC = () => {
                 </div>
 
                 {/* Right: Chat/Detail View */}
-                <div className="flex-1 bg-aqua-900/30 border border-aqua-800 rounded-2xl flex flex-col overflow-hidden">
+                <div className="flex-1 bg-white dark:bg-aqua-900/30 border border-gray-200 dark:border-aqua-800 rounded-2xl flex flex-col overflow-hidden shadow-sm">
                     {selectedTicket ? (
                         <>
                             {/* Chat Header */}
-                            <div className="p-4 border-b border-aqua-800 bg-aqua-800/40 flex justify-between items-center">
+                            <div className="p-4 border-b border-gray-200 dark:border-aqua-800 bg-gray-50 dark:bg-aqua-800/40 flex justify-between items-center">
                                 <div className="flex items-center gap-3">
-                                    <img src={selectedTicket.avatar} alt="" className="h-10 w-10 rounded-full border-2 border-aqua-700" />
+                                    <img src={selectedTicket.avatar} alt="" className="h-10 w-10 rounded-full border-2 border-white dark:border-aqua-700 shadow-sm" />
                                     <div>
-                                        <h3 className="font-bold text-white text-sm flex items-center gap-2">
+                                        <h3 className="font-bold text-gray-900 dark:text-white text-sm flex items-center gap-2">
                                             {selectedTicket.subject}
                                             <span className={`text-[10px] px-2 py-0.5 rounded-full border ${
-                                                selectedTicket.category === 'Disease' ? 'bg-red-500/10 text-red-400 border-red-500/20' : 'bg-aqua-500/10 text-aqua-400 border-aqua-500/20'
+                                                selectedTicket.category === 'Disease' ? 'bg-red-100 dark:bg-red-500/10 text-red-600 dark:text-red-400 border-red-200 dark:border-red-500/20' : 'bg-aqua-100 dark:bg-aqua-500/10 text-aqua-700 dark:text-aqua-400 border-aqua-200 dark:border-aqua-500/20'
                                             }`}>{selectedTicket.category}</span>
                                         </h3>
-                                        <p className="text-xs text-gray-400 flex items-center gap-1">
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
                                             <User size={10}/> {selectedTicket.farmer} ({selectedTicket.farmerId})
                                         </p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <button className="p-2 hover:bg-aqua-700 rounded-full text-gray-400 hover:text-white transition-colors">
+                                    <button className="p-2 hover:bg-gray-100 dark:hover:bg-aqua-700 rounded-full text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                                         <Phone size={18} />
                                     </button>
                                     {selectedTicket.status !== 'Resolved' && (
@@ -287,49 +287,49 @@ const SupportTickets: React.FC = () => {
                                             <CheckCircle size={14} /> Resolve
                                         </button>
                                     )}
-                                    <button className="p-2 hover:bg-aqua-700 rounded-full text-gray-400 hover:text-white transition-colors">
+                                    <button className="p-2 hover:bg-gray-100 dark:hover:bg-aqua-700 rounded-full text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                                         <MoreVertical size={18} />
                                     </button>
                                 </div>
                             </div>
 
                             {/* Chat Messages Area */}
-                            <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+                            <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-gray-50/50 dark:bg-transparent">
                                 <div className="flex justify-center">
-                                    <span className="text-[10px] text-gray-500 bg-aqua-900 px-2 py-1 rounded-full">{selectedTicket.timestamp}</span>
+                                    <span className="text-[10px] text-gray-500 bg-gray-200 dark:bg-aqua-900 px-2 py-1 rounded-full border border-gray-300 dark:border-transparent">{selectedTicket.timestamp}</span>
                                 </div>
                                 
                                 {selectedTicket.messages.map((msg) => (
                                     <div key={msg.id} className={`flex ${msg.sender === 'Agent' ? 'justify-end' : 'justify-start'}`}>
                                         <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm
                                             ${msg.sender === 'Agent' 
-                                                ? 'bg-aqua-600 text-white rounded-br-sm' 
-                                                : 'bg-aqua-800 text-gray-200 rounded-bl-sm border border-aqua-700'}`}
+                                                ? 'bg-aqua-500 text-white dark:bg-aqua-600 rounded-br-sm' 
+                                                : 'bg-white dark:bg-aqua-800 text-gray-800 dark:text-gray-200 rounded-bl-sm border border-gray-200 dark:border-aqua-700'}`}
                                         >
                                             <p>{msg.text}</p>
-                                            <p className={`text-[9px] mt-1 text-right ${msg.sender === 'Agent' ? 'text-aqua-200' : 'text-gray-500'}`}>{msg.time}</p>
+                                            <p className={`text-[9px] mt-1 text-right ${msg.sender === 'Agent' ? 'text-aqua-100 dark:text-aqua-200' : 'text-gray-400 dark:text-gray-500'}`}>{msg.time}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
 
                             {/* Input Area */}
-                            <div className="p-3 border-t border-aqua-800 bg-aqua-800/20">
+                            <div className="p-3 border-t border-gray-200 dark:border-aqua-800 bg-white dark:bg-aqua-800/20">
                                 {selectedTicket.status === 'Resolved' ? (
-                                    <div className="text-center p-2 bg-green-900/20 border border-green-900/50 rounded-lg">
-                                        <p className="text-xs text-green-400 font-medium flex items-center justify-center gap-2">
+                                    <div className="text-center p-2 bg-green-100 dark:bg-green-900/20 border border-green-200 dark:border-green-900/50 rounded-lg">
+                                        <p className="text-xs text-green-600 dark:text-green-400 font-medium flex items-center justify-center gap-2">
                                             <CheckCircle size={14}/> This ticket has been marked as resolved.
                                         </p>
                                     </div>
                                 ) : (
                                     <div className="flex items-center gap-2">
-                                        <button className="p-2 text-gray-400 hover:text-white hover:bg-aqua-800 rounded-full transition-colors">
+                                        <button className="p-2 text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-aqua-800 rounded-full transition-colors">
                                             <Paperclip size={18} />
                                         </button>
                                         <input 
                                             type="text" 
                                             placeholder="Type your reply..." 
-                                            className="flex-1 bg-aqua-900 border border-aqua-700 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:border-aqua-500 focus:ring-1 focus:ring-aqua-500 transition-all"
+                                            className="flex-1 bg-gray-100 dark:bg-aqua-900 border border-gray-200 dark:border-aqua-700 rounded-full px-4 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-aqua-500 focus:ring-1 focus:ring-aqua-500 transition-all"
                                             value={replyText}
                                             onChange={(e) => setReplyText(e.target.value)}
                                             onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
@@ -337,7 +337,7 @@ const SupportTickets: React.FC = () => {
                                         <button 
                                             onClick={handleSendMessage}
                                             disabled={!replyText.trim()}
-                                            className="p-2.5 bg-aqua-500 hover:bg-aqua-400 text-aqua-950 rounded-full shadow-lg shadow-aqua-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="p-2.5 bg-aqua-500 hover:bg-aqua-400 text-white dark:text-aqua-950 rounded-full shadow-lg shadow-aqua-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             <Send size={18} />
                                         </button>
@@ -346,7 +346,7 @@ const SupportTickets: React.FC = () => {
                             </div>
                         </>
                     ) : (
-                        <div className="flex flex-col items-center justify-center h-full text-gray-500">
+                        <div className="flex flex-col items-center justify-center h-full text-gray-400 dark:text-gray-500">
                             <MessageSquare size={48} className="mb-4 opacity-20"/>
                             <p className="text-sm">Select a ticket to view the conversation</p>
                         </div>
