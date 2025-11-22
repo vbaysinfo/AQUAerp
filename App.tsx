@@ -24,8 +24,8 @@ const App: React.FC = () => {
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   
-  // Theme Management
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  // Theme Management - Defaulting to Light Mode as requested
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     if (theme === 'dark') {

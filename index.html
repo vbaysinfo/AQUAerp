@@ -18,14 +18,17 @@
             },
             colors: {
               aqua: {
-                950: '#0d181a',
-                900: '#101f22', // Main bg
-                800: '#152a2e', // Surface/Card
-                700: '#234248', // Borders/Active
-                600: '#325e67',
-                500: '#13c8ec', // Primary Cyan
-                400: '#92c0c9', // Secondary Text
-                100: '#f6f8f8', // Light bg
+                950: '#0a1a2a',
+                900: '#0e2439', // Main bg (Dark Navy)
+                800: '#153550', // Surface/Card (Dark Navy)
+                700: '#1d4a6d', // Borders/Active
+                600: '#23638e',
+                500: '#2980b9', // Primary Blue (#2980b9)
+                400: '#5dade2', // Secondary Text / Accents
+                300: '#85c1e9',
+                200: '#a9cce3',
+                100: '#ebf5fb', // Light bg
+                50:  '#f7fbfe', // Lightest
               }
             }
           }
@@ -39,14 +42,25 @@
         height: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #101f22; 
+        background: #0e2439; 
       }
       ::-webkit-scrollbar-thumb {
-        background: #234248; 
+        background: #1d4a6d; 
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #325e67; 
+        background: #2980b9; 
+      }
+      
+      /* Light mode scrollbar adjustments */
+      html:not(.dark) ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      html:not(.dark) ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+      }
+      html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
       }
     </style>
   <script type="importmap">
@@ -62,7 +76,7 @@
 }
 </script>
 </head>
-  <body class="bg-aqua-100 dark:bg-aqua-900 text-gray-900 dark:text-white antialiased overflow-hidden">
+  <body class="bg-aqua-50 dark:bg-aqua-900 text-gray-900 dark:text-white antialiased overflow-hidden">
     <div id="root"></div>
   </body>
 </html>
