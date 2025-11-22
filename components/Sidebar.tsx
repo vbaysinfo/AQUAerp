@@ -14,6 +14,7 @@ import {
   ChevronRight,
   Factory,
   ClipboardCheck,
+  Fish,
 } from 'lucide-react';
 import { NavItem } from '../types';
 
@@ -46,6 +47,17 @@ const navItems: NavItem[] = [
     subItems: [
       { id: 'field-technician', label: 'Technician Visits' },
       { id: 'field-sales', label: 'Field Sales' },
+    ]
+  },
+  { 
+    id: 'harvest', 
+    label: 'Harvest', 
+    icon: Fish,
+    subItems: [
+      { id: 'harvest-planning', label: 'Harvest Planning' },
+      { id: 'harvest-daily', label: 'Daily Harvest' },
+      { id: 'harvest-grading', label: 'Quality Grading' },
+      { id: 'harvest-logistics', label: 'Packing & Logistics' },
     ]
   },
   { 
